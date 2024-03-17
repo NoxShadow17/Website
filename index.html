@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yes or No Game</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    position: relative;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  button:hover {
+    background-color: #4cae4c;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+  }
+
+  button:active {
+    background-color: #4cae4c;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform: translateY(0);
+  }
+
+  #noButton {
+    position: absolute;
+    transition: top 0.5s, left 0.5s;
+  }
+
+  img#questionImage {
+    display: block;
+    max-width: 80%;
+    height: auto;
+    margin: 20px auto;
+  }
+</style>
+</head>
+<body>
+<h1 id="question">Are you GAY?</h1>
+<div class="button-container">
+  <button id="yesButton">Yes</button>
+  <button id="noButton">No</button>
+</div>
+<img id="questionImage" src="https://preview.redd.it/tosxv6enq1u61.jpg?auto=webp&s=8e9a0113fca01160d68340e4ced25370560f2f6e" alt="Question Image">
+
+<script>
+  let noCount = 0;
+  const questions = [
+    "Are you GAY?",
+    "I know you are GAY?",
+    "Asking for the last time, tell the truth you GAY or not?",
+    "You are GAY........"
+  ];
+  const images = [
+    "https://preview.redd.it/tosxv6enq1u61.jpg?auto=webp&s=8e9a0113fca01160d68340e4ced25370560f2f6e",
+    "https://usagif.com/wp-content/uploads/gify/are-you-sure-about-that-25-usagif.gif.webp",
+    "https://media.makeameme.org/created/think-again-my.jpg",
+    "https://media.pinatafarm.com/protected/B183D0EF-49B8-47BF-A523-E72FD0CFFAAC/Why-are-you-gay.3.meme.webp"
+  ];
+  let questionIndex = 0;
+
+  document.getElementById('yesButton').addEventListener('click', function() {
+    alert('Thank you for agreeing!');
+    // Implement what happens when the user agrees
+  });
+
+  document.getElementById('noButton').addEventListener('mouseover', function() {
+    noCount++;
+    if (noCount > 3) {
+      this.style.top = Math.random() * window.innerHeight + 'px';
+      this.style.left = Math.random() * window.innerWidth + 'px';
+    }
+  });
+
+  document.getElementById('noButton').addEventListener('click', function() {
+    if (noCount <= 3) {
+      questionIndex = (questionIndex + 1) % questions.length;
+      document.getElementById('question').textContent = questions[questionIndex];
+      document.getElementById('questionImage').src = images[questionIndex];
+      alert('Are you sure?');
+      // Implement what happens when the user disagrees
+    }
+  });
+</script>
+</body>
+</html>
